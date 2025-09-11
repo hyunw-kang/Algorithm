@@ -7,7 +7,8 @@ class Solution {
         answer = -1;
         N = dungeons.length;
         mine = k;
-
+        // 최대 개수 -> 순열로 던전의 수만큼 뽑기시작하고 그 값이 0이상일 때 break;
+        // 최대의 경우의 수부터 뽑았기 때문
         for (int i = N; i > 0; i--) {
             numbers = new int[i];
             visited = new boolean[N];
@@ -25,11 +26,10 @@ class Solution {
                 int index = numbers[i];
                 int min = dungeons[index][0];
                 int use = dungeons[index][1];
-                if (temp >= min){
+                if (temp < min) return;
+                else {
                     temp -= use;
                     count++;
-                } else{
-                    break;
                 }
             }
             answer = Math.max(count, answer);
