@@ -1,0 +1,7 @@
+select distinct  D.ID, D.EMAIL, D.FIRST_NAME, D.LAST_NAME
+FROM DEVELOPERS D
+join SKILLCODES S
+ON D.SKILL_CODE & S.CODE > 0 
+-- 비트마스크 
+WHERE S.NAME in ("Python", "C#")
+ORDER BY D.ID ASC;
