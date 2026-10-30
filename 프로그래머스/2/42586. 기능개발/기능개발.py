@@ -1,24 +1,23 @@
 def solution(progresses, speeds):
-    n = len(progresses)
-
     days = []
+    n = len(progresses)
     for i in range(n):
-        remain = 100 - progresses[i]
-        day = remain // speeds[i]
-        if remain % speeds[i] != 0:
-            day = day + 1
-        days.append(day)
-
+        left = 100 - progresses[i]
+        remain = left // speeds[i]
+        if left % speeds[i] != 0:
+            remain = remain + 1
+        days.append(remain)
+        
+        
     answer = []
     cur = days[0]
     count = 1
-    for i in range(1, n):
+    for i in range(1, len(days)):
         if days[i] <= cur:
-            count = count + 1
+            count = count+1
         else:
             answer.append(count)
             cur = days[i]
             count = 1
     answer.append(count)
-
     return answer
